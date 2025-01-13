@@ -1,0 +1,19 @@
+{% extends 'main/father.html'%}
+
+{% block title %}
+    Login
+{% endblock title %}
+
+{% block body %}
+<h2>Login</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Render form fields (username, password) automatically -->
+        <button type="submit">Login</button>
+    </form>
+
+    <p>Si aún no tienes una cuenta <a href="{% url 'acc:registro' %}">regístrate acá</a></p>
+</form>
+    
+{% endblock %}

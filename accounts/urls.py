@@ -8,6 +8,6 @@ app_name = 'acc'
 urlpatterns = [
     path('', views.index, name=('index')),
     path('registro/', views.ViewRegistroUsuario.as_view(), name=('registro')),
-    path('login/', LoginView.as_view(template_name='accounts/login.html'), name='acc.login'),
-    ##"""path('profile/', )"""
+    path('login/', LoginView.as_view(template_name='accounts/login.html'), name='login'),
+    path('profile/', views.ViewPerfilUsuario.as_view(), name='perfil' )
 ]

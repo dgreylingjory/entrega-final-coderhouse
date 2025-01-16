@@ -10,7 +10,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}  <!-- Render form fields (username, password) automatically -->
-        <button type="submit">Login</button>
+        <button type="submit" class="btn btn-primary">Login</button>
     </form>
 
     <p>Si aún no tienes una cuenta <a href="{% url 'acc:registro' %}">regístrate acá</a></p>

@@ -8,9 +8,40 @@
     <h1>
         Hello World!
     </h1>
-    <div>
-        <p>
-            This is my website!
-        </p>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+        <a href="{% url 'acc:registro' %}">
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Registrarse</h5>
+              <p class="card-text">Crear un nuevo usuario</p>
+            </div>
+          </div>
+        </a>
+        </div>
+        <div class="col">
+        <a href="{% url 'acc:login' %}">
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Login</h5>
+              <p class="card-text">Inicia sesión en tu cuenta</p>
+            </div>
+          </div>
+        </a>
+        </div>
+        <div class="col">
+        <a href="{% url 'acc:perfil' %}">
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Perfil</h5>
+              <p class="card-text">Ingresa a tu Perfil</p>
+            </div>
+          </div>
+        </a>
+        </div>
+        
     </div>
 {% endblock %}

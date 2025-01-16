@@ -13,21 +13,18 @@ def index(request):
     return render(request, 'accounts/index.html')
 
 class ViewRegistroUsuario(FormView): ##ver si se puede cambiar a CreateView
-    template_name = 'accounts/registro.html'  # Template for rendering the form
-    form_class = FormCreacionUsuario  # The form class to use
-    success_url = reverse_lazy('acc:login')  # Redirect URL after successful registration
+    template_name = 'accounts/registro.html'  
+    form_class = FormCreacionUsuario  
+    success_url = reverse_lazy('acc:login')  
 
     def form_valid(self, form):
-        # This method is called when the form is valid
-        # Save the new user and perform additional actions if necessary
-        form.save()  # Save the new user created by the form
         return super().form_valid(form)
 
 @method_decorator(login_required, name='dispatch')
-class ViewPerfilUsuario(DetailView):
+class ViewPerfilUsuario(DetailView): ##read, devuelve el user para la template de perfil 
     model = User
     template_name = 'accounts/profile.html'
     context_object_name = 'usuario'
     
     def get_object(self, queryset=None):
-        return self.request.user  # Retrieve the logged-in user
+        return self.request.user 

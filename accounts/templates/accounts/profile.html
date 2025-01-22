@@ -9,6 +9,10 @@
 <p>
     Nombre de usuario: {{ usuario.username}} email: {{ usuario.email }}
 </p>
-    
+<a href="{% url 'acc:logout' %}">
+    <button class="btn btn-primary">
+        Cerrar sesíon
+    </button>
+</a>    
     
 {% endblock %}

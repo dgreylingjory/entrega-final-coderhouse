@@ -24,6 +24,11 @@ class Aeronave(models.Model):
         return self.matricula
     def describir(self):
         return f"Matrícula: {self.matricula}\nModelo: {self.modelo}\nCapacidad: {self.capacidad}"
+    def save(self, *args, **kwargs):
+        # Automatically set 'capacidad' to the 'capacidad_modelo' of the selected 'modelo'
+        if self.modelo:  # Check if a model is selected
+            self.capacidad = self.modelo.capacidad_modelo
+        super().save(*args, **kwargs)
 
 class Camion(models.Model):
     patente = models.CharField(max_length=6)

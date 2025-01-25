@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from fuel import views
-from views import *
+from fuel.views import *
 
 app_name = 'fuel'
 

@@ -7,6 +7,6 @@
 {% block body %}
     <h2>Details for {{ object }}</h2>
     <p>{{ object.describir }}</p>
-    <a href="{% url 'model_name:update' object.id %}">Edit</a>
-    <a href="{% url 'model_name:delete' object.id %}">Delete</a>
+    <a href="{% url 'model_name:update' object.id %}" class="btn btn-primary">Editar</a>
+    <a href="{% url 'model_name:delete' object.id %}" class="btn btn-primary">Borrar</a>
 {% endblock %}

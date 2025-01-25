@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView
 from .models import Vale, ModeloHelicoptero, Aeronave, Camion 
-from forms import ValeCombustibleForm
+from .forms import ValeCombustibleForm
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -27,12 +27,12 @@ class ValeListView(LoginRequiredMixin, ListView):
     template_name = 'fuel/vale_list.html'
     context_object_name = 'vales'
 
-class ValeDeleteView(LoginRequiredMixin, StaffRequiredMixin, DeleteView):
+class ValeDeleteView(StaffRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Vale
     template_name = 'fuel/vale_delete.html'
     success_url = reverse_lazy('fuel/vale_list')
 
-class ValeUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
+class ValeUpdateView(StaffRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Vale
     fields = ['fecha', 'litros_cargados','matricula_aeronave', 'patente_camion', 'motivo', 'despachador', 'receptor']
     form_class = ValeCombustibleForm
@@ -45,7 +45,7 @@ class ValeDetailView(DetailView):
 
 ##======================================Creación de modelos==================================
 ##ModeloHelicoptero
-class ModeloHelicopteroCreateView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
+class ModeloHelicopteroCreateView(StaffRequiredMixin, LoginRequiredMixin, CreateView):
     model = ModeloHelicoptero
     fields = ['nombre_modelo', 'capacidad_modelo']
     template_name='fuel/form.html'
@@ -56,7 +56,7 @@ class ModeloHelicopteroListView(LoginRequiredMixin, ListView):
     template_name = 'fuel/modelo_list.html'
     context_object_name = 'modelos'
 
-class ModeloHelicopteroDeleteView(LoginRequiredMixin, StaffRequiredMixin, DeleteView):
+class ModeloHelicopteroDeleteView(StaffRequiredMixin, LoginRequiredMixin, DeleteView):
     model = ModeloHelicoptero
     template_name = 'fuel/delete.html'
     success_url = reverse_lazy('fuel/modelo_list')
@@ -65,14 +65,14 @@ class ModeloHelicopteroDetailView(DetailView):
     model = ModeloHelicoptero
     template_name = 'detail.html'
 
-class ModeloHelicopteroUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
+class ModeloHelicopteroUpdateView(StaffRequiredMixin, LoginRequiredMixin, UpdateView):
     model = ModeloHelicoptero
     fields = ['nombre_modelo', 'capacidad_modelo']
     template_name='fuel/form.html'
     success_url = reverse_lazy('fuel/modelo_list')
 
 ##Aeronave
-class AeronaveCreateView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
+class AeronaveCreateView(StaffRequiredMixin, LoginRequiredMixin, CreateView):
     model = Aeronave
     fields = ['modelo', 'capacidad', 'matricula']
     template_name='fuel/form.html'
@@ -87,19 +87,19 @@ class AeronaveDetailView(DetailView):
     model = Aeronave
     template_name = 'detail.html'
 
-class AeronaveDeleteView(LoginRequiredMixin, StaffRequiredMixin, DeleteView):
+class AeronaveDeleteView(StaffRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Aeronave
     template_name = 'fuel/delete.html'
     success_url = reverse_lazy('fuel/aeronave_list')
 
-class AeronaveUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
+class AeronaveUpdateView(StaffRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Aeronave
     fields = ['modelo', 'capacidad', 'matricula']
     template_name='fuel/form.html'
     success_url = reverse_lazy('fuel/aeronave_list')
 
 ##Camion
-class CamionCreateView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
+class CamionCreateView(StaffRequiredMixin, LoginRequiredMixin, CreateView):
     model = Camion
     fields = ['patente', 'capacidad', 'contenido', 'vencimiento_filtro', 'vencimiento_certificacion']
     template_name='fuel/form.html'
@@ -114,12 +114,12 @@ class CamionDetailView(DetailView):
     model = Camion
     template_name = 'detail.html'
 
-class CamionDeleteView(LoginRequiredMixin, StaffRequiredMixin, DeleteView):
+class CamionDeleteView(StaffRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Camion
     template_name = 'fuel/delete.html'
     success_url = reverse_lazy('fuel/camion_list')
 
-class CamionUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
+class CamionUpdateView(StaffRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Camion
     fields = ['patente', 'capacidad', 'contenido', 'vencimiento_filtro', 'vencimiento_certificacion']
     template_name='fuel/form.html'

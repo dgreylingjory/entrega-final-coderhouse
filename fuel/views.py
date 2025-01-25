@@ -14,21 +14,6 @@ class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
     def test_func(self):
         return self.request.user.is_staff
 
-class ModeloGenericoListView(ListView):
-    template_name = 'fuel/list.html'  
-    context_object_name = 'objects'  
-
-    def get_queryset(self):
-        model_name = self.kwargs.get('model_name') 
-        if model_name == 'ModeloHelicoptero':
-            return ModeloHelicoptero.objects.all()
-        elif model_name == 'Aeronave':
-            return Aeronave.objects.all()
-        elif model_name == 'Camion':
-            return Camion.objects.all()
-        else:
-            return ModeloHelicoptero.objects.none()
-
 ##===================================Vale Combustible (CRUD)==============================
 class ValeCreateView(LoginRequiredMixin, CreateView):
     model = Vale
@@ -54,6 +39,10 @@ class ValeUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
     template_name='fuel/vale_form.html'
     success_url = reverse_lazy('fuel/vale_list')
 
+class ValeDetailView(DetailView):
+    model = Vale
+    template_name = 'fuel/vale_detail.html'
+
 ##======================================Creación de modelos==================================
 ##ModeloHelicoptero
 class ModeloHelicopteroCreateView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
@@ -64,7 +53,7 @@ class ModeloHelicopteroCreateView(LoginRequiredMixin, StaffRequiredMixin, Create
 
 class ModeloHelicopteroListView(LoginRequiredMixin, ListView):
     model = ModeloHelicoptero
-    template_name = 'fuel/list.html'
+    template_name = 'fuel/modelo_list.html'
     context_object_name = 'modelos'
 
 class ModeloHelicopteroDeleteView(LoginRequiredMixin, StaffRequiredMixin, DeleteView):
@@ -91,7 +80,7 @@ class AeronaveCreateView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
 
 class AeronaveListView(LoginRequiredMixin, ListView):
     model = Aeronave
-    template_name = 'fuel/list.html'
+    template_name = 'fuel/aeronave_list.html'
     context_object_name = 'aeronaves'
 
 class AeronaveDetailView(DetailView):
@@ -118,7 +107,7 @@ class CamionCreateView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
 
 class CamionListView(LoginRequiredMixin, ListView):
     model = Camion
-    template_name = 'fuel/list.html'
+    template_name = 'fuel/camion_list.html'
     context_object_name = 'camiones'
 
 class CamionDetailView(DetailView):

@@ -10,9 +10,9 @@
     </h1>
     <div>
         <p>
-            {% for Vale in Vales %}
+            {% for ModeloHelicoptero in ModeloHelicopteros %}
             <li>
-                {{Vale.id}} {{Vale.fecha}}
+                {{ModeloHelicoptero.nombre_modelo}}
             </li>
             {% endfor %}
         </p>

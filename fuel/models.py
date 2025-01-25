@@ -32,10 +32,10 @@ class Aeronave(models.Model):
 
 class Camion(models.Model):
     patente = models.CharField(max_length=6)
-    capacidad = models.IntegerField()
-    contenido = models.IntegerField()
-    vencimiento_filtro = models.DateField()
-    vencimiento_certificacion = models.DateField()
+    capacidad = models.IntegerField() ##aun no se utiliza
+    contenido = models.IntegerField() ##aun no se utiliza
+    vencimiento_filtro = models.DateField() ##aun no se utiliza
+    vencimiento_certificacion = models.DateField() ##aun no se utiliza
     def __str__(self):
         return self.patente
     def describir(self):

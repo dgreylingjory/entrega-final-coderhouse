@@ -5,12 +5,53 @@
 {% endblock title %}
 
 {% block body %}
-    <h1>
-        Hello World!
-    </h1>
-    <div>
-        <p>
-            This is my website!
-        </p>
+<h1 class="text-center">
+    Hello World!
+</h1>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+        <a href="{% url 'fuel:crear_vale' %}">
+            <div class="card">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Crear Vales</h5>
+                <p class="card-text">Acá podrás crear vales de combustible</p>
+              </div>
+            </div>
+        </a>
     </div>
+    <div class="col">
+        <a href="{% url 'fuel:vale_list' %}">
+            <div class="card">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Ver vales</h5>
+                <p class="card-text">Ver un listado de los vales de combustible emitidos</p>
+              </div>
+            </div>
+        </a>
+    </div>
+    <div class="col">
+        <a href="{% url '' %}">
+            <div class="card">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Ver datos</h5>
+                <p class="card-text">Ver helicópteros y camiones registrados</p>
+              </div>
+            </div>
+        </a>
+    </div>
+    <div class="col">
+      <a href="{% url '' %}">
+      <div class="card">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Registrar datos</h5>
+          <p class="card-text">Añadir helicópteros, camiones, más (solo administradores)</p>
+        </div>
+      </div>
+      </a>
+    </div>
+</div>
 {% endblock %}

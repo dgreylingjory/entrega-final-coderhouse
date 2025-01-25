@@ -1,0 +1,46 @@
+{% extends 'base/father.html' %}
+
+{% block title %}
+
+{% endblock title%}
+
+{% block body %}
+    <h4>
+        Seleccione el dato que desea crear
+    </h4>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            <a href="{% url 'fuel:modelo_create' %}">
+                <div class="card">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Modelo de helicóptero</h5>
+                    <p class="card-text">Modelo y su combustible, base para crear nuevos helicópteros de matrícula única.</p>
+                  </div>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="{% url 'fuel:aeronave_create' %}">
+                <div class="card">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Aeronave</h5>
+                    <p class="card-text">Helicóptero de matrícula única</p>
+                  </div>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="{% url 'fuel:camion_create' %}">
+                <div class="card">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Camión</h5>
+                    <p class="card-text">Patente única, capacidad y vencimientos de filtros</p>
+                  </div>
+                </div>
+            </a>
+        </div>
+    </div>
+{% endblock body%}

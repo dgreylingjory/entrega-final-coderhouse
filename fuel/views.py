@@ -3,9 +3,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView
 from .models import Vale, ModeloHelicoptero, Aeronave, Camion 
 from .forms import ValeCombustibleForm, CamionForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 # Create your views here.
+
+##===================================Vistas de la aplicación==================================
 def index(request):
     return render(request, 'fuel/index.html')
 
@@ -21,11 +23,20 @@ class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
         return self.request.user.is_staff
 
 ##===================================Vale Combustible (CRUD)==============================
-class ValeCreateView(LoginRequiredMixin, CreateView):
+class ValeCreateView(CreateView):
     model = Vale
     form_class = ValeCombustibleForm
-    template_name='fuel/vale_form.html'
+    template_name = 'fuel/vale_form.html'
     success_url = reverse_lazy('fuel:vale_list')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user  
+        return kwargs
+
+    def form_valid(self, form):
+        form.instance.despachador = self.request.user  ##Coloca al usuario logeado como despachador
+        return super().form_valid(form)
 
 class ValeListView(LoginRequiredMixin, ListView):
     model = Vale
@@ -41,12 +52,13 @@ class ValeUpdateView(StaffRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Vale
     fields = ['fecha', 'litros_cargados','matricula_aeronave', 'patente_camion', 'motivo', 'despachador', 'receptor']
     template_name='fuel/vale_form.html'
-    success_url = reverse_lazy('fuel/vale:list')
+    success_url = reverse_lazy('fuel:vale_list')
 
 class ValeDetailView(DetailView):
     model = Vale
     template_name = 'fuel/vale_detail.html'
-
+    context_object_name = 'object'
+    
 ##======================================Creación de modelos==================================
 ##ModeloHelicoptero
 class ModeloHelicopteroCreateView(StaffRequiredMixin, LoginRequiredMixin, CreateView):

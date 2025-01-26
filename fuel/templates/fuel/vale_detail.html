@@ -6,7 +6,34 @@
 
 {% block body %}
 <h2>Details for {{ object }}</h2>
-<p>{{ object.describir }}</p>
+
+<div class="card">
+    <div class="card-header">
+      Vale de Carguío de Combustible
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Vale N°{{ object.id }}</h5>
+      <div class="row align-items-start">
+        <div class="col">
+            <p>Fecha:</p>
+            <p>Litros cargados:</p>
+            <p>Despachador:</p>
+            <p>Aeronave:</p>
+            <p>Camion:</p>
+            <p>Motivo:</p>
+        </div>
+        <div class="col">
+            <p>{{ object.fecha }}</p>
+            <p>{{ object.litros_cargados }}</p>
+            <p>{{ object.despachador }}</p>
+            <p>{{ object.matricula_aeronave }}</p>
+            <p>{{ object.patente_camion }}</p>
+            <p>{{ object.motivo }}</p>
+        </div>
+      </div>   
+    </div>
+  </div>
+
 <a href="{% url 'fuel:vale_update' object.id %}" class="btn btn-primary">Editar</a>
 <a href="{% url 'fuel:vale_delete' object.id %}" class="btn btn-primary">Borrar</a>
 {% endblock %}

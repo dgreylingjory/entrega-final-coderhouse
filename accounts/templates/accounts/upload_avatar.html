@@ -1,0 +1,15 @@
+{% extends 'main/father.html'%}
+
+{% block title %}
+    Subir avatar
+{% endblock title %}
+
+{% block body %}
+<h2>Subir Avatar</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Subir</button>
+  </form>
+    
+{% endblock %}

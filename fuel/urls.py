@@ -13,7 +13,7 @@ urlpatterns = [
 
     path('vales/', ValeListView.as_view(), name='vale_list'),
     path('vales/create/', ValeCreateView.as_view(), name='crear_vale'),	
-    path('vales/<int:pk>/update', ValeUpdateView.as_view(), name='vale_update'),
+    path('vales/<int:pk>/update/', ValeUpdateView.as_view(), name='vale_update'),
     path('vales/<int:pk>/detail', ValeDetailView.as_view(), name='vale_detail'),
     path('vales/<int:pk>/delete', ValeDeleteView.as_view(), name='vale_delete'),
 

@@ -1,6 +1,7 @@
 from django import forms
 from .models import * 
 
+##Formulario creacion de vale
 class ValeCombustibleForm(forms.ModelForm):
     class Meta:
         model = Vale
@@ -42,12 +43,25 @@ class ValeCombustibleForm(forms.ModelForm):
     despachador = forms.ModelChoiceField(queryset=User.objects.none(), disabled=True)
     
     def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user', None)  # Pass user when initializing form
+        self.user = kwargs.pop('user', None)  ##encuentra el usuario logeado
         super().__init__(*args, **kwargs)
 
+        ##hace que receptor sea nombre apellido en vez de nombre de usuario
+        self.fields['receptor'].widget.choices = [
+            (user.id, f"{user.first_name} {user.last_name}") for user in User.objects.all()
+        ]
+        
+        ##hace que despachador sea el usuario logeado
         if self.user:
-            self.fields['despachador'] = forms.ModelChoiceField(queryset=User.objects.filter(id=self.user.id), initial=self.user, disabled=True)
+            self.fields['despachador'].widget.choices = [
+                (self.user.id, f"{self.user.first_name} {self.user.last_name}") ##hace que sea nombre apellido en vez de username
+            ]
+            self.fields['despachador'].initial = self.user.id
+            
+        if not self.instance.pk: ##hace que numero de vale sea el ultimo + 1 automaticamente
+            self.fields['id'].initial = Vale.objects.latest('id').id + 1 if Vale.objects.exists() else 1 
 
+##Formulario creacion de camion (para tener seleccion de fecha)
 class CamionForm(forms.ModelForm):
     class Meta:
         model = Camion

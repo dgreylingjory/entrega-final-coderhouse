@@ -11,9 +11,12 @@
     <div>
         <p>
             {% for Vale in vales %}
-            <li>
-                {{Vale.id}} {{Vale.fecha}}
-            </li>
+            <a href="{% url 'fuel:vale_detail' Vale.id%}">
+                <li>
+                    N°{{Vale.id}}, {{Vale.fecha}}
+                </li>
+            </a>
+            
             {% endfor %}
         </p>
     </div>

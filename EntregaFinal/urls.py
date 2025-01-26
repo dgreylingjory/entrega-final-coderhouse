@@ -23,6 +23,9 @@ from main import views
 from django.conf.urls.static import static
 from django.conf import settings
 
+handler403 = 'main.views.error_403_view'
+handler404 = 'main.views.error_404_view'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),

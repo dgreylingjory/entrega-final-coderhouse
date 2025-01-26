@@ -1,11 +1,11 @@
 {% extends 'main/father.html'%}
 
 {% block title %}
-    Hello World!
+    Vale de Combustible>
 {% endblock title %}
 
 {% block body %}
-<h2>Details for {{ object }}</h2>
+<h2>Detalles de {{ object }}</h2>
 
 <div class="card">
     <div class="card-header">
@@ -21,6 +21,7 @@
             <p>Aeronave:</p>
             <p>Camion:</p>
             <p>Motivo:</p>
+            <p>Receptor:</p>
         </div>
         <div class="col">
             <p>{{ object.fecha }}</p>
@@ -29,6 +30,7 @@
             <p>{{ object.matricula_aeronave }}</p>
             <p>{{ object.patente_camion }}</p>
             <p>{{ object.motivo }}</p>
+            <p>{{ object.receptor }}</p>
         </div>
       </div>   
     </div>

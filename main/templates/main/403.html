@@ -1,0 +1,23 @@
+{% extends 'main/father.html' %}
+
+{% block title %}
+    Error 403
+{% endblock title %}
+
+{% block body %}
+    <h1>
+        Error 403
+    </h1>
+    <p>
+        Estás en la sesión de {{ user.username }} y no tienes permisos para acceder a esta página.
+        Intenta con otro usuario o contacta al administrador.
+    </p>
+    <a href="{% url 'main:index' %}"><button class="btn btn-primary" >
+        Volver
+    </button>
+    </a>
+    <a href="{% url 'acc:logout' %}"><button class="btn btn-primary" >
+        Cerrar sesión
+    </button>
+    </a>  
+{% endblock %}

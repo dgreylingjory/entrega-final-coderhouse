@@ -40,7 +40,10 @@ class ValeCombustibleForm(forms.ModelForm):
         empty_label="Seleccione un receptor",
     )
     
-    despachador = forms.ModelChoiceField(queryset=User.objects.none(), disabled=True)
+    despachador = forms.ModelChoiceField(
+        queryset=User.objects.none(), 
+        required=False,
+        disabled=True)
     
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)  ##encuentra el usuario logeado
@@ -58,8 +61,10 @@ class ValeCombustibleForm(forms.ModelForm):
             ]
             self.fields['despachador'].initial = self.user.id
             
-        if not self.instance.pk: ##hace que numero de vale sea el ultimo + 1 automaticamente
-            self.fields['id'].initial = Vale.objects.latest('id').id + 1 if Vale.objects.exists() else 1 
+        ##inicializa el formulario con el numero de vale
+        super().__init__(*args, **kwargs)
+        if not kwargs.get('initial'):
+            self.fields['id'].initial = Vale.objects.count() + 1
 
 ##Formulario creacion de camion (para tener seleccion de fecha)
 class CamionForm(forms.ModelForm):

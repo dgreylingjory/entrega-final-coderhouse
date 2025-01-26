@@ -1,0 +1,18 @@
+{% extends 'main/father.html' %}
+
+{% block title %}
+    Error 403
+{% endblock title %}
+
+{% block body %}
+    <h1>
+        Error 404
+    </h1>
+    <p>
+        No deberías estar aquí, esta página no existe.
+    </p>
+    <a href="{% url 'main:index' %}"><button class="btn btn-primary" >
+        Volver
+    </button>
+    
+{% endblock %}

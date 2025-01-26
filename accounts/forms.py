@@ -34,7 +34,7 @@ class UserRegisterForm(UserCreationForm):
         if commit:
             user.save()
 
-            # Create profile if it doesn't exist
+            ##crea perfil para el usuario
             if not hasattr(user, 'profile'):
                 Profile.objects.create(user=user)
 

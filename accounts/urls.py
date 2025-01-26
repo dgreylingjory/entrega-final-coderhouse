@@ -1,4 +1,4 @@
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView
 from django.urls import path
 from accounts import views
 from django.conf import settings
@@ -12,7 +12,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='accounts/login.html'), name='login'),
     path('profile/', views.ViewPerfilUsuario.as_view(), name='perfil' ),
     path('logout/', views.custom_logout, name='logout'),
-    #path('upload_avatar/', views.upload_avatar, name='upload_avatar'),
     path('editarperfil/', views.editarPerfil, name='editarperfil'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -7,6 +7,8 @@ app_name = 'fuel'
 
 urlpatterns = [
     path('', views.index, name='index'),
+
+    path('search/', views.buscar, name='buscar'),
    
     path('classes/', views.classes, name='classes'),
     path('classes/create/', views.classes_create, name='classes_create'),

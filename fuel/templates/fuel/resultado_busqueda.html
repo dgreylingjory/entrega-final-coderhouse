@@ -1,0 +1,30 @@
+{% extends 'main/father.html' %}
+
+{% block title %}
+    Resultados de búsqueda
+{% endblock title %}
+
+{% block body %}
+    <h1>Resultados de búsqueda</h1>
+    
+    {% if resultados %}
+        <ul>
+            {% for resultado in resultados %}
+                <li>
+                    <strong>Vale ID:</strong> {{ resultado.id }}<br>
+                    <strong>Fecha:</strong> {{ resultado.fecha }}<br>
+                    <strong>Litros Cargados:</strong> {{ resultado.litros_cargados }}<br>
+                    <strong>Aeronave Matricula:</strong> {{ resultado.matricula }}<br>
+                    <strong>Camion Patente:</strong> {{ resultado.patente }}<br>
+                    <strong>Motivo:</strong> {{ resultado.motivo }}<br>
+                    <strong>Despachador:</strong> {{ resultado.despachador }}<br>
+                    <strong>Receptor:</strong> {{ resultado.receptor }}<br>
+                    <a href="{{ resultado.detail_url }}">Ver Detalles</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron resultados.</p>
+    {% endif %}
+    <a href="{% url 'fuel:index' %}" class="btn btn-primary">Volver</a>
+{% endblock %}

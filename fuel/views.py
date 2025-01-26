@@ -4,6 +4,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView, DetailView,
 from .models import Vale, ModeloHelicoptero, Aeronave, Camion 
 from .forms import ValeCombustibleForm, CamionForm
 from django.urls import reverse_lazy, reverse
+from django.db.models import Q
 
 # Create your views here.
 
@@ -141,3 +142,33 @@ class CamionUpdateView(StaffRequiredMixin, LoginRequiredMixin, UpdateView):
     template_name='fuel/form.html'
     success_url = reverse_lazy('fuel:camion_list')
 
+##======================================Buscador==================================
+def buscar(request):
+    query = request.GET.get('q', '')
+    resultados = []
+# or | and & not !
+    if query:
+        vales = Vale.objects.filter(
+            Q(id__icontains=query) |
+            Q(matricula_aeronave__matricula__icontains=query) |  
+            Q(patente_camion__patente__icontains=query) |  
+            Q(despachador__username__icontains=query) |  
+            Q(receptor__username__icontains=query) |  
+            Q(motivo__icontains=query)
+        )
+
+        for vale in vales:
+            resultados.append({
+                'id': vale.id,
+                'fecha': vale.fecha,
+                'litros cargados': vale.litros_cargados,
+                'matricula': vale.matricula_aeronave,
+                'patente': vale.patente_camion,
+                'motivo': vale.motivo,
+                'despachador': vale.despachador,
+                'receptor': vale.receptor,
+                'detail_url': reverse('fuel:vale_detail', kwargs={'pk': vale.id})
+
+            })
+
+    return render(request, 'fuel/resultado_busqueda.html', {'resultados': resultados})

@@ -9,9 +9,9 @@ class Profile(models.Model):
     def __str__(self):
         return f"{self.user.username} Profile"
 
-class Avatar(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    imagen = models.ImageField(upload_to='avatares', null=True, blank=True)
+    avatar = models.ImageField(upload_to='avatars/', default='avatars/default.png', blank=True, null=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.imagen}"
+        return f"Perfil de {self.user.username}"

@@ -6,13 +6,18 @@
 
 {% block body %}
 <h2>Mi Perfil</h2>
-<p>
-    Nombre de usuario: {{ usuario.username}} email: {{ usuario.email }}
-    <img src="{{ usuario.profile.avatar.url }}" alt="{{ usuario.username }}'s avatar" />
+<p>Nombre de usuario: {{ user.username }} | Email: {{ user.email }}
+    <div>
+    {% if user.profile.avatar %}
+        <img src="{{ user.profile.avatar.url }}" alt="Avatar">
+    {% else %}
+        <p>No avatar set</p>
+    {% endif %}
+    </div>
 </p>
-<a href="{% url 'acc:upload_avatar' %}">
+<a href="{% url 'acc:editarperfil' %}">
     <button class="btn btn-primary">
-        Cambiar avatar
+        Editar perfil
     </button>
 </a> 
 <a href="{% url 'acc:logout' %}">

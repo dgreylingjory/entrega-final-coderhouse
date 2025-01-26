@@ -5,11 +5,38 @@
 {% endblock title %}
 
 {% block body %}
-<h2>Subir Avatar</h2>
-  <form method="post" enctype="multipart/form-data">
+  <h1>{{ usuario.username }}'s Profile</h1>
+  
+  <!-- Avatar Section -->
+  <div class="avatar-section">
+    {% if usuario.profile.avatar %}
+      <!-- If the user has an avatar -->
+      <img src="{{ usuario.profile.avatar.url }}" alt="{{ usuario.username }}'s Avatar" width="150" height="150">
+    {% else %}
+      <!-- If the user doesn't have an avatar -->
+      <p>No avatar set. Upload a new one below.</p>
+    {% endif %}
+  </div>
+  
+  <!-- Profile Information -->
+  <div class="profile-info">
+    <p><strong>Username:</strong> {{ usuario.username }}</p>
+    <p><strong>Email:</strong> {{ usuario.email }}</p>
+    
+    <!-- Optionally, display any additional profile information -->
+    {% if usuario.profile.bio %}
+      <p><strong>Bio:</strong> {{ usuario.profile.bio }}</p>
+    {% else %}
+      <p><strong>Bio:</strong> No bio set.</p>
+    {% endif %}
+  </div>
+  
+  <!-- Avatar Upload Form -->
+  <h3>Change Avatar</h3>
+  <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Subir</button>
+    <button type="submit">Upload Avatar</button>
   </form>
-    
+
 {% endblock %}

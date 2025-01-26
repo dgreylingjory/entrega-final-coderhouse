@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from .forms import FormCreacionUsuario, AvatarForm
 from django.utils.decorators import method_decorator
+from .models import Profile
 
 # Create your views here.
 
@@ -28,13 +29,13 @@ class ViewRegistroUsuario(FormView):
         return super().form_valid(form)
 
 @method_decorator(login_required, name='dispatch')
-class ViewPerfilUsuario(DetailView): ##read, devuelve el user para la template de perfil 
+class ViewPerfilUsuario(DetailView):
     model = User
     template_name = 'accounts/profile.html'
     context_object_name = 'usuario'
     
     def get_object(self, queryset=None):
-        return self.request.user 
+        return self.request.user
 
 def custom_logout(request):
     logout(request)
@@ -42,11 +43,16 @@ def custom_logout(request):
 
 @login_required
 def upload_avatar(request):
+    # Ensure the user has a profile
+    if not hasattr(request.user, 'profile'):
+        Profile.objects.create(user=request.user)
+
     if request.method == 'POST':
-        form = AvatarForm(request.POST, request.FILES, instance=request.user.avatar)
+        form = AvatarForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             form.save()
-            return redirect('profile')
+            return redirect('acc:perfil')  # Redirect back to the profile page after uploading
     else:
-        form = AvatarForm(instance=request.user.avatar)
-    return render(request, 'upload_avatar.html', {'form': form})
+        form = AvatarForm(instance=request.user.profile)
+
+    return render(request, 'accounts/upload_avatar.html', {'form': form})

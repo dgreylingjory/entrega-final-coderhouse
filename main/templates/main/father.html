@@ -9,31 +9,28 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="{% url 'main:index' %}">EcoFuel</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="{% url 'fuel:index' %}">Control de Combustible</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
+                  Vales de Combustible
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="{% url 'fuel:crear_vale' %}">Crear vales</a></li>
+                  <li><a class="dropdown-item" href="{% url 'fuel:vale_list' %}">Ver vales</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                <a class="nav-link disabled" aria-disabled="true">Inventario de Combustibles</a>
               </li>
             </ul>
             <form class="d-flex" role="search">
@@ -53,7 +50,7 @@
         <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
           <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
         </a>
-        <p class="text-body-secondary">&copy; 2024</p>
+        <p class="text-body-secondary">&copy; Daniel Greyling 2025</p>
       </div>
   
       <div class="col mb-3">
@@ -61,35 +58,30 @@
       </div>
   
       <div class="col mb-3">
-        <h5>Section</h5>
+        <h5>Control de combustible</h5>
         <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+          <li class="nav-item mb-2"><a href="{% url 'fuel:index' %}" class="nav-link p-0 text-body-secondary">Inicio</a></li>
+          <li class="nav-item mb-2"><a href="{% url 'fuel:crear_vale' %}" class="nav-link p-0 text-body-secondary">Crear vales</a></li>
+          <li class="nav-item mb-2"><a href="{% url 'fuel:vale_list' %}" class="nav-link p-0 text-body-secondary">Ver vales</a></li>
+          <li class="nav-item mb-2"><a href="{% url 'fuel:classes' %}" class="nav-link p-0 text-body-secondary">Ver datos registrados</a></li>
+          <li class="nav-item mb-2"><a href="{% url 'fuel:classes_create' %}" class="nav-link p-0 text-body-secondary">Registrar Datos</a></li>
         </ul>
       </div>
   
       <div class="col mb-3">
-        <h5>Section</h5>
+        <h5>Inventario de combustible</h5>
         <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">En desarrollo!</a></li>
         </ul>
       </div>
   
       <div class="col mb-3">
-        <h5>Section</h5>
+        <h5>Cuentas</h5>
         <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+          <li class="nav-item mb-2"><a href="{% url 'acc:registro' %}" class="nav-link p-0 text-body-secondary">Registro</a></li>
+          <li class="nav-item mb-2"><a href="{% url 'acc:login' %}" class="nav-link p-0 text-body-secondary">Iniciar sesión</a></li>
+          <li class="nav-item mb-2"><a href="{% url 'acc:perfil' %}" class="nav-link p-0 text-body-secondary">Mi perfil</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Chat</a></li>
         </ul>
       </div>
     </footer>

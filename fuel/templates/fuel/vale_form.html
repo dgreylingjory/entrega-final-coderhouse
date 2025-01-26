@@ -9,8 +9,10 @@
         Hello World!
     </h1>
     <div>
-        <p>
-            This is my website!
-        </p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
     </div>
 {% endblock %}

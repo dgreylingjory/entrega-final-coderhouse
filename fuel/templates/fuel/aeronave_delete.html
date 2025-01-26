@@ -1,0 +1,14 @@
+{% extends 'main/father.html'%}
+
+{% block title %}
+    Hello World!
+{% endblock title %}
+
+{% block body %}
+    <h2>Estás seguro que quieres eliminar la aeronave {{ object }}?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmar</button>
+    </form>
+    <a href="{% url 'fuel:aeronave_list' %}">Cancelar</a>
+{% endblock %}

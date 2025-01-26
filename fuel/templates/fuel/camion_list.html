@@ -10,9 +10,9 @@
     </h1>
     <div>
         <p>
-            {% for Camion in Camiones %}
+            {% for Camion in camiones %}
             <li>
-                {{Camion.patente}}
+                <a href="{% url 'fuel:camion_detail' Camion.id%}">{{Camion.patente}}</a>
             </li>
             {% endfor %}
         </p>

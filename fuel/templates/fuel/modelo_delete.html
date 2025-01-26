@@ -5,10 +5,10 @@
 {% endblock title %}
 
 {% block body %}
-    <h2>Are you sure you want to delete {{ object }}?</h2>
+    <h2>Estás seguro que quieres eliminar el modelo {{ object }}?</h2>
     <form method="post">
         {% csrf_token %}
         <button type="submit">Confirm</button>
     </form>
-    <a href="{% url 'model_name:list' %}">Cancel</a>
+    <a href="{% url 'fuel:modelo_list' %}">Cancel</a>
 {% endblock %}

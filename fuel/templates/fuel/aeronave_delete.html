@@ -1,14 +1,14 @@
 {% extends 'main/father.html'%}
 
 {% block title %}
-    Hello World!
+    Eliminar aeronave
 {% endblock title %}
 
 {% block body %}
     <h2>Estás seguro que quieres eliminar la aeronave {{ object }}?</h2>
     <form method="post">
         {% csrf_token %}
-        <button type="submit">Confirmar</button>
+        <button type="submit" class="btn btn-primary">Confirmar</button>
     </form>
-    <a href="{% url 'fuel:aeronave_list' %}">Cancelar</a>
+    <a href="{% url 'fuel:aeronave_list' %}" class="btn btn-primary">Cancelar</a>
 {% endblock %}

@@ -4,6 +4,9 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'main/index.html')
 
+def about(request):
+    return render(request, 'main/about.html')
+
 ##===================================Gestión de Errores==================================
 def error_404_view(request, exception):
     return render(request, 'main/404.html')

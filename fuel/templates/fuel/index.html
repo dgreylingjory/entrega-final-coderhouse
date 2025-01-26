@@ -1,18 +1,18 @@
 {% extends 'main/father.html'%}
 
 {% block title %}
-    Hello World!
+    Control de combustible
 {% endblock title %}
 
 {% block body %}
 <h1 class="text-center">
-    Hello World!
+    Control de combustible
 </h1>
 <div class="row row-cols-1 row-cols-md-2 g-4">
     <div class="col">
         <a href="{% url 'fuel:crear_vale' %}">
             <div class="card">
-              <img src="..." class="card-img-top" alt="...">
+              <img src="https://media.istockphoto.com/id/467814700/photo/the-helicopter-is-refueling-on-the-helideck.jpg?s=612x612&w=0&k=20&c=w1oeEjcMFjPEb6qmIv6uRhxv9zQT431ytlxnBUQ5JMM=" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Crear Vales</h5>
                 <p class="card-text">Acá podrás crear vales de combustible</p>
@@ -23,7 +23,7 @@
     <div class="col">
         <a href="{% url 'fuel:vale_list' %}">
             <div class="card">
-              <img src="..." class="card-img-top" alt="...">
+              <img src="https://www.theregreview.org/wp-content/uploads/2019/11/GettyImages-1078157262.jpg" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Ver vales</h5>
                 <p class="card-text">Ver un listado de los vales de combustible emitidos</p>
@@ -34,7 +34,7 @@
     <div class="col">
         <a href="{% url 'fuel:classes' %}">
             <div class="card">
-              <img src="..." class="card-img-top" alt="...">
+              <img src="https://www.kenworth.com/media/ljuh04ti/pj-helicopters-t880-1lr.jpg?width=500&height=333.1034482758621" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Ver datos</h5>
                 <p class="card-text">Ver helicópteros y camiones registrados</p>
@@ -45,7 +45,7 @@
     <div class="col">
       <a href="{% url 'fuel:classes_create' %}">
       <div class="card">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="https://scx2.b-cdn.net/gfx/news/2022/building-up-new-data-s.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Registrar datos</h5>
           <p class="card-text">Añadir helicópteros, camiones, más (solo administradores)</p>

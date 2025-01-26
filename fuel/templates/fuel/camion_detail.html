@@ -1,11 +1,11 @@
 {% extends 'main/father.html'%}
 
 {% block title %}
-    Hello World!
+    Camion
 {% endblock title %}
 
 {% block body %}
-    <h2>Details for {{ object }}</h2>
+    <h2>Detalles de {{ object }}</h2>
     <p>{{ object.describir }}</p>
     <a href="{% url 'fuel:camion_update' object.id %}" class="btn btn-primary">Editar</a>
     <a href="{% url 'fuel:camion_delete' object.id %}" class="btn btn-primary">Borrar</a>

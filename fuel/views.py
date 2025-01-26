@@ -24,7 +24,7 @@ class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
         return self.request.user.is_staff
 
 ##===================================Vale Combustible (CRUD)==============================
-class ValeCreateView(CreateView):
+class ValeCreateView(LoginRequiredMixin, CreateView):
     model = Vale
     form_class = ValeCombustibleForm
     template_name = 'fuel/vale_form.html'

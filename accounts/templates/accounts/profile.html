@@ -8,7 +8,7 @@
 <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
     <div class="card shadow-lg p-4 rounded"> <div class=" image d-flex flex-column justify-content-center align-items-center"> 
         <button class="btn btn-secondary"> 
-            {% if user.avatar %}
+            {% if user.profile.avatar %}
                 <img src="{{ user.profile.avatar.url }}" height="100" width="100" alt="avatar"/>
             {% else %}
                 <img src="https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png" height="100" width="100"/>

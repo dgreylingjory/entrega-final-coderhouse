@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import FormView, DetailView
+from django.views.generic import FormView, DetailView,CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import login, logout
@@ -16,16 +16,22 @@ from .models import Profile
 def index(request):
     return render(request, 'accounts/index.html')
 
-def register(request):
-    if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Usuario creado exitosamente. ¡Ahora puedes iniciar sesión!')
-            return redirect('login')
-    else:
-        form = UserCreationForm()
-    return render(request, 'AppCoder/register.html', {'form': form})
+class UserRegisterView(CreateView):
+    model = User  # The model we're creating
+    form_class = UserRegisterForm  # The form used to create the user
+    template_name = 'accounts/registro.html'  # The template for rendering the form
+    success_url = reverse_lazy('acc:login')  # Redirect to login page after successful registration
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+
+        # Check if the Profile already exists for this user
+        if not hasattr(self.object, 'profile'):
+            # Create a profile only if it doesn't already exist
+            Profile.objects.create(user=self.object)
+
+        messages.success(self.request, 'Usuario creado exitosamente. ¡Ahora puedes iniciar sesión!')
+        return response
 
 @method_decorator(login_required, name='dispatch')
 class ViewPerfilUsuario(DetailView):
